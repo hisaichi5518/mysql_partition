@@ -1,6 +1,21 @@
 # MysqlPartition
 
-TODO: Write a gem description
+Ruby port of Perl's MySQL::Partition
+
+## Usage
+
+```ruby
+require 'mysql2'
+require 'mysql_partition'
+
+client = Mysql2::Client.new(:host => "localhost", :username => "root")
+partition = MysqlPartition.new(type: :list, table: "tablename", expression: "created_at", client: client)
+partition.partitioned?
+
+partition.create(...)
+partition.add(...)
+partition.drop(...)
+```
 
 ## Installation
 
@@ -18,13 +33,9 @@ Or install it yourself as:
 
     $ gem install mysql_partition
 
-## Usage
-
-TODO: Write usage instructions here
-
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/mysql_partition/fork )
+1. Fork it ( https://github.com/hisaichi5518/mysql_partition/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

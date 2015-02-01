@@ -44,6 +44,3 @@ module MysqlPartition
     end
   end
 end
-__END__
-
-

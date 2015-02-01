@@ -2,14 +2,14 @@ module MysqlPartition
   module Type
     module Range
 
-      def build_create_partitions_sql(hash)
+      def create_partitions(hash)
         if catch_all_partition_name
           hash.merge!(catch_all_partition_name => "MAXVALUE")
         end
         super(hash)
       end
 
-      def build_add_catch_all_partition_sql
+      def add_catch_all_partition
         unless catch_all_partition_name
           raise "catch_all_partition_name isn't specified"
         end
@@ -18,7 +18,7 @@ module MysqlPartition
           table, build_partition_part(catch_all_partition_name, 'MAXVALUE')
       end
 
-      def build_reorganize_catch_all_partition_sql(hash)
+      def reorganize_catch_all_partition(hash)
         unless catch_all_partition_name
           raise "catch_all_partition_name isn't specified"
         end

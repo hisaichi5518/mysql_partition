@@ -17,17 +17,17 @@ module MysqlPartition
       self.class.prepend klass
     end
 
-    def build_create_partitions_sql(hash)
+    def create_partitions(hash)
       sprintf 'ALTER TABLE %s PARTITION BY %s (%s) (%s)',
         table, type, expression, build_partition_parts(hash)
     end
 
-    def build_add_partitions_sql(hash)
+    def add_partitions(hash)
       sprintf 'ALTER TABLE %s ADD PARTITION (%s)',
         table, build_partition_parts(hash)
     end
 
-    def build_drop_partitions_sql(*partition_names)
+    def drop_partitions(*partition_names)
       sprintf 'ALTER TABLE %s DROP PARTITION %s',
         table, partition_names.join(', ')
     end

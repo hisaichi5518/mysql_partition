@@ -10,9 +10,9 @@ describe MysqlPartition::SqlMaker do
       )
     end
 
-    describe "#build_create_partitions_sql" do
+    describe "#create_partitions" do
       subject do
-        sql_maker.build_create_partitions_sql("p1" => 1)
+        sql_maker.create_partitions("p1" => 1)
       end
 
       it "returns ALTER TABLE" do
@@ -20,9 +20,9 @@ describe MysqlPartition::SqlMaker do
       end
     end
 
-    describe "#build_add_partitions_sql" do
+    describe "#add_partitions" do
       subject do
-        sql_maker.build_add_partitions_sql("p2" => "2, 3")
+        sql_maker.add_partitions("p2" => "2, 3")
       end
 
       it "returns ALTER TABLE" do
@@ -30,9 +30,9 @@ describe MysqlPartition::SqlMaker do
       end
     end
 
-    describe "#build_drop_partitions_sql" do
+    describe "#drop_partitions" do
       subject do
-        sql_maker.build_drop_partitions_sql("p1")
+        sql_maker.drop_partitions("p1")
       end
 
       it "returns ALTER TABLE" do
@@ -51,9 +51,9 @@ describe MysqlPartition::SqlMaker do
       )
     end
 
-    describe "#build_create_partitions_sql" do
+    describe "#create_partitions" do
       subject do
-        sql_maker.build_create_partitions_sql('p20100101' => '2010-01-01')
+        sql_maker.create_partitions('p20100101' => '2010-01-01')
       end
 
       it "returns ALTER TABLE" do
@@ -61,9 +61,9 @@ describe MysqlPartition::SqlMaker do
       end
     end
 
-    describe "#build_add_partitions_sql" do
+    describe "#add_partitions" do
       subject do
-        sql_maker.build_add_partitions_sql(
+        sql_maker.add_partitions(
           'p20110101' => '2011-01-01',
           'p20120101' => '2012-01-01',
         )
@@ -74,9 +74,9 @@ describe MysqlPartition::SqlMaker do
       end
     end
 
-    describe "#build_drop_partitions_sql" do
+    describe "#drop_partitions" do
       subject do
-        sql_maker.build_drop_partitions_sql("p20100101")
+        sql_maker.drop_partitions("p20100101")
       end
 
       it "returns ALTER TABLE" do
@@ -96,9 +96,9 @@ describe MysqlPartition::SqlMaker do
       )
     end
 
-    describe "#build_create_partitions_sql" do
+    describe "#create_partitions" do
       subject do
-        sql_maker.build_create_partitions_sql('p20100101' => "TO_DAYS('2010-01-01')")
+        sql_maker.create_partitions('p20100101' => "TO_DAYS('2010-01-01')")
       end
 
       it "returns ALTER TABLE" do
@@ -106,9 +106,9 @@ describe MysqlPartition::SqlMaker do
       end
     end
 
-    describe "#build_add_catch_all_partition_sql" do
+    describe "#add_catch_all_partition" do
       subject do
-        sql_maker.build_add_catch_all_partition_sql
+        sql_maker.add_catch_all_partition
       end
 
       it "returns ALTER TABLE" do
@@ -116,9 +116,9 @@ describe MysqlPartition::SqlMaker do
       end
     end
 
-    describe "#build_reorganize_catch_all_partition_sql" do
+    describe "#reorganize_catch_all_partition" do
       subject do
-        sql_maker.build_reorganize_catch_all_partition_sql('p20110101' => "TO_DAYS('2011-01-01')")
+        sql_maker.reorganize_catch_all_partition('p20110101' => "TO_DAYS('2011-01-01')")
       end
 
       it "returns ALTER TABLE" do

@@ -15,7 +15,7 @@ module MysqlPartition
         end
 
         sprintf 'ALTER TABLE %s ADD PARTITION (%s)',
-          table, build_partition_part(catch_all_partition_name, 'MAXVALUE');
+          table, build_partition_part(catch_all_partition_name, 'MAXVALUE')
       end
 
       def build_reorganize_catch_all_partition_sql(hash)
